@@ -12,22 +12,19 @@ st.set_page_config(page_title="Acu Chat", page_icon="🧠", layout="wide")
 GROK_API_KEY = "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"
 GROK_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 INTERVIEW_DURATION = 15 * 60  # 15 minutes in seconds
-REDIRECT_URL = "https://acuvision.netlify.app/"
+REDIRECT_URL = "http://localhost:5173/"
 
-interview_cookie = st_javascript("document.cookie")
 interview_data = {}
+query_params = st.query_params
 
 # Top Navbar with Logo and Timer
 logo_url = "https://acuvision.netlify.app/svg/logo.svg"  # Change to your logo URL
 current_time = time.time()
 
-if interview_cookie:
+if "data" in query_params:
     try:
-        cookie_parts = interview_cookie.split("; ")
-        interview_raw = next((c for c in cookie_parts if c.startswith("interviewData=")), None)
-        if interview_raw:
-            interview_json = interview_raw.split("=", 1)[1]
-            interview_data = json.loads(urllib.parse.unquote(interview_json))
+        interview_json = urllib.parse.unquote(query_params["data"])
+        interview_data = json.loads(interview_json)
     except Exception as e:
         st.error(f"Failed to parse interview data: {e}")
 
