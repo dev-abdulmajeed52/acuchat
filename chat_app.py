@@ -12,7 +12,7 @@ st.set_page_config(page_title="Acu Chat", page_icon="🧠", layout="wide")
 GROK_API_KEY = "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"
 GROK_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 reMarkApi = "http://localhost:3000/api/remarks"
-INTERVIEW_DURATION = 15 * 60  # 15 minutes in seconds
+INTERVIEW_DURATION = 3 * 60  # 15 minutes in seconds
 REDIRECT_URL = "http://localhost:5173/"
 
 interview_data = {}
